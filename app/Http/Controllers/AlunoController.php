@@ -27,7 +27,7 @@ class AlunoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage.               
      */
     public function store(Request $request)
     {
@@ -44,5 +44,13 @@ class AlunoController extends Controller
         Aluno::create($validatedData);
 
         return redirect()->route('alunos.index')->with('success', 'Aluno criado com sucesso!');
+    }
+    
+    public function destroy($id)
+    {
+        $aluno = Aluno::findOrFail($id);
+        $aluno->delete();
+
+        return redirect()->route('alunos.index')->with('success', 'Aluno excluído com sucesso.');
     }
 }
